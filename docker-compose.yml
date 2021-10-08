@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:12.2-alpine
+    networks:
+      - postgres
+    environment:
+      TZ: Europe/Stockholm
+      POSTGRES_DB: matomaten
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+
+networks:
+  postgres:
+
+volumes:
+  db-data:
+    driver: local
